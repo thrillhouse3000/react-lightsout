@@ -1,0 +1,8 @@
+.Board-table {
+  border-spacing: 0.5rem;
+}
+
+.Board-winText {
+  color: white;
+  text-shadow: rgba(252, 255, 169, 0.795) 0px 0px 29px;
+}

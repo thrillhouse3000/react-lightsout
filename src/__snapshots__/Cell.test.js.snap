@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          class="Cell "
+        />
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;
+
+exports[`should match snapshot 2`] = `
+<DocumentFragment>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          class="Cell "
+        />
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;

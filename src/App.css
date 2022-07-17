@@ -1,0 +1,21 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgb(63, 63, 63);
+}
+
+.App-header {
+  font-weight: bold;
+  margin-top: 0;
+  color: black;
+}
+
+.App-header-accent {
+  font-weight: bold;
+  margin-top: 0;
+  color: white;
+  text-shadow: rgba(252, 255, 169, 0.795) 0px 0px 29px;
+}
