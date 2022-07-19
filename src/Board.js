@@ -3,49 +3,26 @@ import Cell from "./Cell";
 import "./Board.css";
 import createBoard from './createBoard'
 
-/** Game board of Lights out.
- *
- * Properties:
- *
- * - nrows: number of rows of board
- * - ncols: number of cols of board
- * - chanceLightStartsOn: float, chance any cell is lit at start of game
- *
- * State:
- *
- * - board: array-of-arrays of true/false
- *
- *    For this board:
- *       .  .  .
- *       O  O  .     (where . is off, and O is on)
- *       .  .  .
- *
- *    This would be: [[f, f, f], [t, t, f], [f, f, f]]
- *
- *  This should render an HTML table of individual <Cell /> components.
- *
- *  This doesn't handle any clicks --- clicks are on individual cells
- *
- **/
+//The Game Board
+//3 props:
+//nrows - number of rows, defaults to 3
+//ncols - number of cols, defaults to 3
+//chanceLightStartsOn - probability on will be set to true, defaults to 0.5
+//State:
+//in-memory board created by createBoard.create()
 
 
 function Board({ nrows=3, ncols=3, chanceLightStartsOn=0.5 }) {
-  const [board, setBoard] = useState(createBoard.create(nrows, ncols));
+  const [board, setBoard] = useState(createBoard.create(nrows, ncols, chanceLightStartsOn));
 
-  // TODO: check the board in state to determine whether the player has won.\
+  //return true when every cell is turned off
   function hasWon() {
-    let isWinner = false;
-    board.every(row => (
-      row.every(
-        cell => cell.on === false) ? isWinner = true : isWinner = false
-      )
-    )
-    return isWinner 
+    return board.every(row => (
+      row.every(cell => cell.on === false)
+      ))
   }
 
-  // TODO: Make a (deep) copy of the oldBoard
-  // TODO: in the copy, flip this cell and the cells around it
-  // TODO: return the copy
+  //flip cell.on for the clicked cell and the cell above, below, to the right and to the left
   const flipCellsAround = (coord) => {
     const [y,x] = coord
     function flip(cell) {
@@ -55,6 +32,7 @@ function Board({ nrows=3, ncols=3, chanceLightStartsOn=0.5 }) {
         return true
       }
     }
+    //create a deep clone of the in-memory board, updating the appropriate cells but keeping everything else the same 
     setBoard(
       board.map(row => (
         row.map(cell => (
@@ -69,15 +47,11 @@ function Board({ nrows=3, ncols=3, chanceLightStartsOn=0.5 }) {
       )))
     )  
   }
-
-  // TODO
-  // if the game is won, just show a winning msg & render nothing else
-  // make table board
-  let winner = hasWon()
  
+  //If hasWon() is false render the Board as a table-grid, if hasWon() is true render "You win" message
   return (
     <div className='Board'>
-      {winner === true? (
+      {hasWon() === true? (
         <h1 className="Board-winText">You Win!</h1>
       ) : (
         <table className='Board-table'>

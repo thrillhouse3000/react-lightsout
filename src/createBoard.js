@@ -1,13 +1,13 @@
-/** create a board nrows high/ncols wide, each cell randomly lit or unlit */
-// TODO: create array-of-arrays of true/false values
+//create in-memory board. An array of arrays of Cell objects with chance probability that on is true
+//[[{on: true, coord: [0,0]},{on: false, coord: [0,1]}],
+// [{on: true, coord: [0,0]},{on: true, coord: [0,0]}]]
 const createBoard = {
-    create(rows, cols) {
+    create(rows, cols, chance) {
         let initialBoard = [];
-        let values = [true, false]
         for (let i = 0; i < rows; i++) {
             let row = []
             for (let j = 0; j < cols; j++ ) {
-                row.push({on: values[Math.floor(Math.random() * values.length)], coord: [i, j]})
+                row.push({on: Math.random() < chance? true : false, coord: [i, j]})
             }
             initialBoard.push(row)
         }
